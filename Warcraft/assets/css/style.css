@@ -1,0 +1,80 @@
+*{
+  margin: 0px;
+}
+
+@font-face{
+  font-family: 'Fantasy';
+  src: url('../fonts/Acadian_Runes-Regular_PERSONAL_USE.ttf');
+}
+
+@font-face{
+  font-family: 'Symbols';
+  src: url('../fonts/Fantasy\ clipart\ 2.ttf');
+}
+
+body{
+  background-color: antiquewhite;
+}
+
+header{
+  background-image: url("../img/warcraft.jpg");
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-position: center;
+  height:200px;
+  width: 100%;
+  position: sticky;
+  top: 0px;
+}
+
+h1{
+  color: red;
+  width: 220px;
+  margin: auto;
+  font-family: 'Fantasy', 'Times New Roman';
+  text-shadow: 5px 5px 5px #FFC107;
+}
+
+.contForm{
+  margin: 15px 0px;
+}
+
+.inputRow{
+  display: flex;
+  flex-wrap: no-wrap;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.inputCol{
+  margin: 10px 15px;
+}
+
+.inputTxt{
+  margin: 5px;
+}
+
+label{
+  display: inline-block;   
+  width: 270px;
+}
+
+.btn{
+  font-family: 'Symbols';
+  font-size: 36px;
+}
+
+.contBattle{
+  border: 2px solid red;
+  margin: 30px auto;
+  padding: 15px;
+  width: 700px;
+}
+
+.fieldsetColHero{
+  margin-left: 100px;
+}
+
+.fieldsetColOrc{
+  margin-right: 100px;
+}

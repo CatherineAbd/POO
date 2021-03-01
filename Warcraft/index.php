@@ -27,6 +27,9 @@ Faites vous plaisir : Let's fight ! Faire une boucle pour qu'ils combattent enfi
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <link rel="stylesheet" href="assets/css/style.css">
+    
     <title>Warcraft alpha</title>
   </head>
   <body>
@@ -39,33 +42,56 @@ Faites vous plaisir : Let's fight ! Faire une boucle pour qu'ils combattent enfi
 
       <div class="contForm">
         <form action="" method="post">
-          <fieldset>
-            <legend>Le Héros</legend>
-            <label for="heroHealth">Entrez la valeur de la santé initiale : </label><input type="text" id="heroHealth" name="heroHealth" min="1000" max="3000" placeholder="un nombre entre 1000 et 3000" required>
-            <label for="heroRage">Le héros est-il calme ou plutôt excité ? </label><input type="text" id="heroRage" name="heroRage" min="0" max="100" placeholder="un nombre entre 0 et 100" required>
-            <label for="heroWeapon" class="heroWeapon">Choisissez l'arme</label>
-            <select name="heroWeapon" id="heroWeapon" required>
-              <option value="sword">Epée (dégâts 100)</option>
-              <option value="axe">Hache (dégâts 150)<option>
-              <option value="crossbow">Arbalète (dégâts 80)</option>
-            </select>
-            <label for="heroShield" class="heroShield">Choisissez la défense</label>
-            <select name="heroShield" id="heroShield" required>
-              <option value="shield">Bouclier simple (protection 100)</option>
-              <option value="reinforced shield">Bouclier renforcé (protection 150)</option>
-              <option value="">Armure cuir (protection 90)</option>
-              <option value="">Armure acier (protection 130)</option>
-            </select>
-          </fieldset>
-          <fieldset>
-            <legend>L'orc</legend>
-            <label for="orcHealth">Entrez la valeur de la santé initiale : </label><input type="text" id="orcHealth" name="orcHealth" min="1000" max="3000" placeholder="un nombre entre 1000 et 3000" required>
-            <label for="orcRage">S'agit-il d'un orc hargneux ou tout doux ? </label><input type="text" id="orcRage" name="orcRage" min="0" max="100" placeholder="un nombre entre 0 et 100" required>
-          </fieldset>
-          <button type="submit" name="btnSubmit">Lancer les attaques</button>
+          <div class="inputRow">
+            <div class="fieldsetColHero">
+              <fieldset>
+                <legend>Le Héros</legend>
+                <div class="inputCol">
+                  <label for="heroHealth">Entrez la valeur de la santé initiale : </label><input type="text" id="heroHealth" name="heroHealth" class="inputTxt" min="1000" max="3000" placeholder="un nombre entre 1000 et 3000" required>
+                </div>
+                  <div class="inputCol">
+                  <label for="heroRage">Le héros est-il calme ou plutôt excité ? </label><input type="text" id="heroRage" name="heroRage" class="inputTxt" min="0" max="100" placeholder="un nombre entre 0 et 100" required>
+                </div>
+                <div class="inputCol">
+                  <label for="heroWeapon" class="heroWeapon">Choisissez l'arme</label>
+                  <select name="heroWeapon" id="heroWeapon" required>
+                    <option value="sword">Epée (dégâts 100)</option>
+                    <option value="axe">Hache (dégâts 150)</option>
+                    <option value="crossbow">Arbalète (dégâts 80)</option>
+                  </select>
+                </div>
+                <div class="inputCol">
+                  <label for="heroShield" class="heroShield">Choisissez la défense</label>
+                  <select name="heroShield" id="heroShield" required>
+                    <option value="shield">Bouclier simple (protection 100)</option>
+                    <option value="reinforced shield">Bouclier renforcé (protection 150)</option>
+                    <option value="">Armure cuir (protection 90)</option>
+                    <option value="">Armure acier (protection 130)</option>
+                  </select>
+                </div>
+              </fieldset>
+            </div>
+            <div class="fieldsetCol">
+              <button type="submit" name="btnSubmit" class="btn">H</button>
+            </div>
+            <div class="fieldsetColOrc">
+            <fieldset>
+              <legend>L'orc</legend>
+                <div class="inputCol">
+                  <label for="orcHealth">Entrez la valeur de la santé initiale : </label><input type="text" id="orcHealth" name="orcHealth" min="1000" max="3000" placeholder="un nombre entre 1000 et 3000" required>
+                </div>
+                <div class="inputCol">
+                  <label for="orcRage">S'agit-il d'un orc hargneux ou tout doux ? </label><input type="text" id="orcRage" name="orcRage" min="0" max="100" placeholder="un nombre entre 0 et 100" required>
+                </div>
+            </fieldset>
+            </div>
+          </div>
         </form>
       </div>
 
+      <hr>
+
+      <div class="contBattle">
       <?php
         if (isset($_POST["btnSubmit"])){
           switch ($_POST["heroWeapon"]){
@@ -125,8 +151,8 @@ Faites vous plaisir : Let's fight ! Faire une boucle pour qu'ils combattent enfi
             }
           } 
         }?>
-
-    </div>
+      </div> <!-- contBattle -->
+    </div> <!-- contPrinc -->
 
   </body>
 </html>

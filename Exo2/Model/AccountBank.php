@@ -6,16 +6,12 @@ declare(strict_types=1);
 class AccountBank
 {
 
-    /** @var string */
     private $_holder;
 
-    /** @var int */
     private $_balance;
 
-    /** @var int */
     private $_interestRate;
 
-    /** @var string */
     private $_currency;
 
     /**

@@ -1,0 +1,46 @@
+*{
+  margin: 0px;
+}
+
+@font-face{
+  font-family: 'Fantasy';
+  src: url('');
+}
+
+body{
+  background-color: antiquewhite;
+}
+
+header{
+  background-image: url("warcraft.jpg");
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-position: center;
+  height:200px;
+  width: 100%;
+  position: sticky;
+  top: 0px;
+}
+
+h1{
+  color: red;
+  width: 220px;
+  margin: auto;
+  font-family: 'Fantasy', 'Times New Roman';
+}
+
+.contForm{
+  margin: 15px 0px;
+}
+
+.inputRow{
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-evenly;
+}
+
+.inputCol{
+  margin: 10px 15px;
+
+}
