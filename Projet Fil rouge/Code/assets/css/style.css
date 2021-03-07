@@ -1,0 +1,73 @@
+:root{
+  /* color's header & footer */
+  --colBackBanners : black;
+  --colTxtBanners : white;
+}
+
+*{
+  margin: 0;
+  padding: 0;
+}
+
+/* global styles */
+
+.mainCont{
+  background-image: url("/assets/img/route_lacets_snow.jpg");
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-position: center;
+  color: var(--colTxtBanners);
+  height: 100vh;
+}
+
+.cnxAdmCont{
+  margin-top: 50px;
+}
+
+.admCont{
+  background-image: url("/assets/img/Gears.jpg");
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-position: center;
+  color: var(--colBackBanners);
+  height: 100vh;
+}
+
+.mainHeader{
+  position: fixed;
+  top:0;
+  left: 0;
+  width: 100%;
+  background-color: var(--colBackBanners);
+  color: var(--colTxtBanners);
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.mainHeaderLogoImg{
+  width: 80px;
+  height: auto;
+}
+
+.globalFooter{
+  position: fixed;
+  left: 0;
+  bottom: 0;
+  width: 100%;
+  background-color: var(--colBackBanners);
+  color: var(--colTxtBanners);
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.footBtnAdm{
+  transform: rotate(360deg);
+  transition: 450ms ease-in-out;
+}
+
+.footBtnAdm:hover{
+  transform: rotate(0deg);
+}
+

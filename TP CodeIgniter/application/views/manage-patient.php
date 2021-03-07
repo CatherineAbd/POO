@@ -1,5 +1,17 @@
 <?= validation_errors() ?>
-<?= form_open('patients_ctrl/managePatient') ?>
+<?php
+ if (isset($onePatient['id']) || !empty(set_value('id)'))) {
+    $labelBtn = "Modification patient";
+    $pathSubmit = 'patients_ctrl/managePatient/' . $onePatient['id']??set_value('id');
+ }
+ else
+ {
+    $labelBtn = "Création patient";
+    $pathSubmit = 'patients_ctrl/managePatient';
+ }
+    echo form_open($pathSubmit);
+    //form_open('patients_ctrl/managePatient');
+?>
 
     <label for="firstname">Prénom</label>
     <input type="text" name="firstname" value="<?= $onePatient['firstname']??set_value('firstname') ?>" /><br />  
@@ -15,8 +27,7 @@
     <!-- hidden fied for update's key -->
     <input type="hidden" name="id" value="<?= $onePatient['id']??set_value('id') ?>" />
 
-    <input type="submit" name="submit" value="Création / modification patient" />
-    <!-- <input type="submit" name="submitUpdate" value="Modification patient" /> -->
+    <input type="submit" name="submit" value="<?= $labelBtn ?>" />
 
 </form>
 

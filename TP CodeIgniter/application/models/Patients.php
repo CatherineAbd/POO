@@ -52,7 +52,7 @@ class Patients extends CI_Model{
     return $this->db->delete('patients', array('id' => $id));
   }
 
-  public function manageOnePatient($id = NULL){
+  public function manageOnePatient(){
     $data = array(
       'lastname' => $this->input->post('lastname'),
       'firstname' => $this->input->post('firstname'),

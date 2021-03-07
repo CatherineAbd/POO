@@ -76,6 +76,7 @@ class Patients_ctrl extends CI_Controller{
 
   public function managePatient($id = NULL){
 
+    var_dump("meth managepatient");
     $data['title'] = "Gestion d'un patient";
 
     $data['onePatient'] = $this->patients->getOnePatient($id);
@@ -92,8 +93,8 @@ class Patients_ctrl extends CI_Controller{
       $this->load->view('templates/footer');
     }
     else{
-
-      $this->patients->manageOnePatient($id);
+      var_dump("creation ou modif");
+      $this->patients->manageOnePatient();
       $this->load->view('success');
     }
   }
