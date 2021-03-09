@@ -18,7 +18,7 @@ class User extends CI_Model{
     }
   }
   
-  public function getUserId($id = NULL){
+  public function getUserId($id = FALSE){
     $this->db->select("u.id, u.lastname, u.firstname, u.password, u.id_roleUser, u.id_agency, r.role");
     $this->db->from("user u");
     $this->db->join("roleuser r", "id_roleuser = r.id");
@@ -30,7 +30,6 @@ class User extends CI_Model{
       $this->db->where(array("u.id" => $id));
       return $this->db->get()->row_array();
     }
-    
   }
 
   public function manageUser(){
@@ -48,6 +47,31 @@ class User extends CI_Model{
     else
     {
       return $this->db->insert('user', $data);
+    }
+  }
+
+  public function deleteUser($id){
+    if ($this->ctrlDeleteUser($id)){
+      $this->db->delete("user", array("id" => $id));
+      return true;
+    }
+      else
+    {
+      return false;
+    }
+  }
+
+  // delete is possible if user is not the only one for an agency
+  public function ctrlDeleteUser($id){
+    $query = "SELECT COUNT(*) total FROM user WHERE id_agency = ( SELECT id_agency FROM user WHERE id = " . $id . ")";
+    $result = $this->db->query($query)->row()->total;
+
+    if ($result > 1){
+      return true;
+    }
+    else
+    {
+      return false;
     }
   }
 }

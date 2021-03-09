@@ -21,20 +21,6 @@
   height: 100vh;
 }
 
-.cnxAdmCont{
-  margin-top: 50px;
-}
-
-.admCont{
-  background-image: url("/assets/img/Gears.jpg");
-  background-repeat: no-repeat;
-  background-size: cover;
-  background-position: center;
-  color: var(--colBackBanners);
-  height: 100vh;
-  margin-top: 100px;
-}
-
 .mainHeader{
   position: fixed;
   top:0;
@@ -71,5 +57,27 @@
 
 .footBtnAdm:hover{
   transform: rotate(0deg);
+}
+
+.cnxAdmCont{
+  margin-top: 50px;
+}
+
+.admCont{
+  background-image: url("/assets/img/Gears.jpg");
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-position: center;
+  color: var(--colBackBanners);
+  height: 100vh;
+  margin-top: 100px;
+}
+
+#tableRoleUser{
+  display: none;
+}
+
+#tableUser{
+  display: none;
 }
 

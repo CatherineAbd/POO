@@ -10,7 +10,6 @@
   <div class="mainHeaderBtnUnCnx">
     <?php
       if (isset($this->session->userLastname)){
-      echo "<a href='" . site_url('main/unCnx') . "'>Déconnexion</a>";
       }
     ?>
   </div>

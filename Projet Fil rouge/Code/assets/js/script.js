@@ -1,3 +1,34 @@
+// document.getElementById("selectuser").addEventListener("click", function (){
+//   alert("coucou");
+// });
+var indexCurrent = 0;
+
+function superAdmSelectTable(){
+  var index = document.getElementById("selectTables").selectedIndex;
+
+  // if selectedIndex has changed
+  console.log("index:" + index + " indexCurrent:" + indexCurrent);
+  if (indexCurrent != index){
+    // reset msg error
+    document.getElementById("superAdmError").innerHTML = "";
+    // show div of table selected
+    switch (index) {
+      case 1: document.getElementById("tableUser").style.display = "block";
+        break;
+      case 2: document.getElementById("tableRoleUser").style.display = "block";
+        break;
+    }
+    // hide last div showed
+    switch (indexCurrent) {
+      case 1: document.getElementById("tableUser").style.display = "none";
+        break;
+      case 2: document.getElementById("tableRoleUser").style.display = "none";
+        break;
+    }
+    indexCurrent = index;
+  }
+}
+
 function superAddFormUser(tabRoleUser){
   // var input = document.createElement("input");
   // input.setAttribute("type", "text");
@@ -27,19 +58,3 @@ function superAddFormUser(tabRoleUser){
   document.getElementById("formRow").appendChild(form);
 
 }
-
-// function addField() {
-//   try {
-//   var div = document.createElement("div");
-//   var input = document.createElement("input");
-//   input.setAttribute("type","text");
-//   input.setAttribute("name","language[]");
-//   input.setAttribute("value","");
-//   input.appendChild(document.createTextNode(""));
-//   div.appendChild(document.createTextNode("Langage: "));
-//   div.appendChild(input);
-//   document.getElementById("languages").appendChild(div);
-//   } catch(e) {
-//   alert(e);
-//   }
-//   }
