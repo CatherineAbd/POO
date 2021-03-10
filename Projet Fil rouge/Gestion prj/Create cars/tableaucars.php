@@ -1,4 +1,6 @@
-[['anne'=> '2008',
+<?php
+
+$tabCars = [['anne'=> '2008',
   'titre'=> 'Location Voiture FORD FOCUS à Le Havre',
   'km'=> '225 000 - 250 000 kms',
   'place'=> '5',
@@ -312,4 +314,6 @@
   'place'=> '4',
   'energie'=> 'Essence',
   'boite'=> 'Manuelle',
-  'image'=> 'C:/Users/vauch/Desktop/projetcars/Location Voiture RENAULT TWINGO II à Le HavreManuelle2010.jpg']]
+  'image'=> 'C:/Users/vauch/Desktop/projetcars/Location Voiture RENAULT TWINGO II à Le HavreManuelle2010.jpg']];
+
+  ?>

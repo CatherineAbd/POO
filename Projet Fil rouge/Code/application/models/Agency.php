@@ -64,8 +64,12 @@ class Agency extends CI_Model{
     $this->db->from("agency a");
     $this->db->join("parkcar p", "p.id_agency = a.id");
     $this->db->where(array("a.id" => $id));
-    // $this->db->get()->row_array();
-    var_dump($this->db->get()->row_array());
-    return true;
+    if ($this->db->get()->row_array()){
+      return false;
     }
+    else
+    {
+      return true;
+    }
+  }
 }

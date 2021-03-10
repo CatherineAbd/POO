@@ -16,6 +16,7 @@ class Main extends CI_Controller{
     $this->load->model("roleuser");
     $this->load->model("agency");
     $this->load->model("city");
+    $this->load->model("parkcar");
     $this->session;
     
   }
@@ -67,11 +68,13 @@ class Main extends CI_Controller{
       if (!$session){
         $this->session->userLastname = $data["user"]["lastname"];
         $this->session->userRole = $data["user"]["role"];
+        $this->session->idAgency = $data["user"]["id_agency"];
       }
       else
       {
         $data["user"]["lastname"] = $this->session->userLastname;
         $data["user"]["role"] = $this->session->userRole;
+        $data["user"]["id_agency"] = $this->session->idAgency;
       }
       if ($data["user"]["role"] == "superviseur")
       {
@@ -82,6 +85,7 @@ class Main extends CI_Controller{
       }
       else
       {
+        $data["tabParkcar"] = $this->parkcar->getParkcarId(FALSE, $this->session->idAgency);
         $this->load->view("templates/headerHTML");
         $this->load->view("templates/headerSub", $data);
         $this->load->view("employAdmMain", $data);

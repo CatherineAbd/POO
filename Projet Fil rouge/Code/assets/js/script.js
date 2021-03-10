@@ -37,3 +37,30 @@ function superAdmSelectTable(){
     indexCurrent = index;
   }
 }
+
+function employAdmSelectTable(){
+  var index = document.getElementById("selectTables").selectedIndex;
+
+  // if selectedIndex has changed
+  console.log("index:" + index + " indexCurrent:" + indexCurrent);
+  if (indexCurrent != index){
+    // reset msg error
+    document.getElementById("employAdmError").innerHTML = "";
+    
+    // show div of table selected
+    switch (index) {
+      case 1: document.getElementById("tableParkcar").style.display = "block";
+        break;
+      case 2: document.getElementById("tableBooking").style.display = "block";
+        break;
+    }
+    // hide last div showed
+    switch (indexCurrent) {
+      case 1: document.getElementById("tableParkcar").style.display = "none";
+        break;
+      case 2: document.getElementById("tableBooking").style.display = "none";
+        break;
+    }
+    indexCurrent = index;
+  }
+}
