@@ -10,7 +10,7 @@
                 <script src="https://kit.fontawesome.com/07d23712a0.js" crossorigin="anonymous"></script>
 
                 <!-- Own styles -->
-                <?= link_tag("assets/css/style.css?v=1"); ?>
+                <?= link_tag("assets/css/style.css"); ?>
                 <title>Loca auto</title>
         </head>
         <body>

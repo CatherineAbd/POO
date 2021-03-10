@@ -1,4 +1,4 @@
-<div class="tableConfig" id="tableUser">
+<div class="tableUser" id="tableUser">
     <table class="table table-dark table-hover col-10">
       <thead>
         <tr>
@@ -36,7 +36,7 @@
           </td>
 
           <th>
-            <a href="<?= site_url('main/deleteOneUser/') . $oneUser['id'] ?>" onclick="return confirm('Etes vous sûre de vouloir supprimer cette valeur ?');" class="superBtn"><i class="fas fa-trash-alt"></i></a>
+            <a href="<?= site_url('main/deleteOneUser/') . $oneUser['id'] ?>" class="superBtn"><i class="fas fa-trash-alt"></i></a>
           </th>
         </tr>
       <?php
@@ -44,6 +44,31 @@
       ?>
       </tbody>
     </table>
-    <a href="<?= site_url('main/manageOneUser') ?>" class="superBtn">+</a>
+    <a href="<?= site_url('main/manageOneUser') ?>" class="superBtn" data-toggle="modal" data-target="#AdmModalManageUser">+</a>
   </div>
+
+  <div class="modal fade" id="AdmModalManageUser">
+      <div class="modal-dialog">
+          <div class="modal-content">
+            <div class="modal-header">
+              <h5 class="modal-title">Gestion user</h5>
+              <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                <span aria-hidden="true"> × </span>
+              </button>
+            </div>
+
+            <div class="modal-body text-center">
+              <?php
+                require "manageUser.php";
+              ?>
+            </div>
+
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-dismiss="modal">
+                    Fermer</button>
+            </div>
+          </div>
+      </div>
+    </div>
+</div>
 

@@ -6,10 +6,6 @@ class RoleUser extends CI_Model{
     
   }
 
-  public function getRoleUser2(){
-    return $this->db->get('roleUser')->result_array();
-  }
-
   public function getRoleUser($id = FALSE){
     if ($id === FALSE){
       $query = $this->db->get('roleUser');
@@ -20,7 +16,7 @@ class RoleUser extends CI_Model{
       $query = $this->db->get_where('roleUser', array('id' => $id));
       return $query->row_array();
     }
-}
+  }
 
   public function manageRoleUser(){
     $data = array(

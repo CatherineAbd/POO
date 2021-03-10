@@ -5,9 +5,10 @@ class User extends CI_Model{
   }
 
   public function getUser($lastname = FALSE, $password = FALSE){
-    $this->db->select("u.id, u.lastname, u.firstname, u.password, u.id_roleUser, u.id_agency, r.role");
+    $this->db->select("u.id, u.lastname, u.firstname, u.password, u.id_roleUser, u.id_agency, r.role, a.name");
     $this->db->from("user u");
     $this->db->join("roleuser r", "id_roleuser = r.id");
+    $this->db->join("agency a", "a.id = u.id_agency");
     if ($lastname === FALSE || $password === FALSE){
       return $this->db->get()->result_array();
     }

@@ -3,24 +3,20 @@
         <div class="formLastname inputCol">
           <span class="iconField"><i class="far fa-user"></i></span>
           <input type="text" id="lastname" name="lastname" placeholder="nom" value="<?= $oneRow['lastname']??set_value('lastname') ?>">
-          <p><?php echo form_error('lastname'); ?></p>
         </div>
         <div class="formFirstname inputCol">
           <span class="iconField"><i class="far fa-user"></i></span>
           <input type="text" id="firstname" name="firstname" placeholder="prénom" value="<?= $oneRow['firstname']??set_value('firstname') ?>">
-          <p><?php echo form_error('firstname'); ?></p>
         </div>
     </div>
     <div class="inputRow">
         <div class="formPasswd inputCol">
           <span class="iconField"><i class="fas fa-key"></i></span>
           <input type="text" id="password1" name="password1" placeholder="mot de passe" value="<?= $oneRow['password']??set_value('password1') ?>">
-          <p><?php echo form_error('password1'); ?></p>
         </div>
         <div class="formPasswd inputCol">
           <span class="iconField"><i class="fas fa-key"></i></span>
           <input type="text" id="password2" name="password2" placeholder="conf. mot de passe" value="<?= $oneRow['password']??set_value('password2') ?>">
-          <p><?php echo form_error('password2'); ?></p>
         </div>
     </div>
     <div class="inputRow">

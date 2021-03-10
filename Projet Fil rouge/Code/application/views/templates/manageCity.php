@@ -1,13 +1,13 @@
 <div class="superAdmForm">
     <div class="inputRow">
       <div class="formId inputCol">
-        <span class="iconField"><i class="far fa-user"></i></span>
+        <span class="iconField"><i class="fas fa-user"></i></span>
         <input type="text" name="textId" readonly value="<?= $oneRow['id']??set_value('id') ?>">
       </div>
-      <div class="formRole inputCol">
-        <span class="iconField"><i class="fas fa-user-cog"></i></span>
-        <input type="text" id="role" name="role" placeholder="rôle" value="<?= $oneRow['role']??set_value('role') ?>">
-        <p><?php echo form_error('role'); ?></p>
+      <div class="formCity inputCol">
+        <span class="iconField"><i class="fas fa-city"></i></span>
+        <input type="text" id="city" name="city" placeholder="Ville" value="<?= $oneRow['nameCity']??set_value('city') ?>">
+        <p><?php echo form_error('city'); ?></p>
       </div>
     </div>
 

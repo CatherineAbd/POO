@@ -1,4 +1,4 @@
-<div class="tableRoleUser" id="tableRoleUser">
+<div class="tableConfig" id="tableRoleUser">
     <table class="table table-dark table-hover col-10">
       <thead>
         <tr>
@@ -20,7 +20,7 @@
           </td>
 
           <th>
-            <a href="<?= site_url('main/deleteOneRoleUser/') . $oneRoleUser['id'] ?>" class="superBtn"><i class="fas fa-trash-alt"></i></a>
+            <a href="<?= site_url('main/deleteOneRoleUser/') . $oneRoleUser['id'] ?>" onclick="return confirm('Etes vous sûre de vouloir supprimer cette valeur ?');" class="superBtn"><i class="fas fa-trash-alt"></i></a>
           </th>
         </tr>
       <?php

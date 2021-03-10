@@ -13,3 +13,32 @@ insert into user values
 (1, 'Abdmeziem', 'Catherine', 'pouet', FALSE, 1, 1),
 (2, 'Tokilebon', 'Olga', 'olga', FALSE, 2, 3);
 
+insert into color values
+(1, 'rouge'),
+(2, 'bleu');
+
+insert into brandcar values
+(1, 'peugeot'),
+(2, 'renault');
+
+insert into modelcar values
+(1, '208'),
+(2, '308'),
+(3, 'clio'),
+(4, 'twingo');
+
+insert into categorycar values
+(1, 'citadine'),
+(2, 'monospace'),
+(3, 'suv');
+
+insert into car values
+(1, 400, 5, 'manuelle', 5, 30, false, '', 1, 1, 1);
+
+insert into parkcar values
+(1, 400, false, 1, 1, 1);
+
+select * from parkcar;
+
+
+
