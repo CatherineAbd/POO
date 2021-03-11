@@ -8,7 +8,7 @@
   <meta charset="UTF-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Document</title>
+  <title>Création table locaauto.car</title>
 </head>
 <body>
   <table>
@@ -23,14 +23,15 @@
     </thead>
     <tbody>
         <?php
-          foreach($clientsArray as $client){
+          foreach($tabCars as $oneCar){
             ?>
           <tr>
-            <td><?= $client["lastName"] ?></td>
-            <td><?= $client["firstName"] ?></td>
-            <td><?= $client["newBirthDate"] ?></td>
-            <td><?= $client["card"] ?></td>
-            <td><?= $client["cardNumber"] ?></td>
+            <td><?= $oneCar["anne"] ?></td>
+            <td><?= $oneCar["titre"] ?></td>
+            <td><?= $oneCar["km"] ?></td>
+            <td><?= $oneCar["place"] ?></td>
+            <td><?= $oneCar["energie"] ?></td>
+            <td><?= $oneCar["boite"] ?></td>
           </tr>
 
         <?php } ?>

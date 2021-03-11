@@ -17,17 +17,35 @@ class Main extends CI_Controller{
     $this->load->model("agency");
     $this->load->model("city");
     $this->load->model("parkcar");
+    $this->load->model("car");
+    $this->load->model("modelcar");
+    $this->load->model("brandcar");
+    $this->load->model("booking");
+    $this->load->model("color");
+    $this->load->model("customer");
+    $this->load->model("category");
     $this->session;
     
   }
   
   public function index(){
     $data["title"] = "ACCUEIL";
+
+    // data for search form
+    $data["tabAgency"] = $this->agency->getAgency();
+    $data["tabCategory"] = $this->category->getCategory();
+
     $this->load->view("templates/headerHTML");
-    $this->load->view("main");
+    $this->load->view("main", $data);
     $this->load->view("templates/footer");
+
   }
   
+  public function unCnx(){
+    session_destroy();
+    redirect("main/index");
+  }
+
   public function cnxAdm(){
     if (isset($this->session->userLastname)) {
       redirect(site_url("main/adm"));
@@ -41,7 +59,7 @@ class Main extends CI_Controller{
       $this->load->view("templates/footer");
     }
   }
-  
+
   public function adm($msgError = FALSE){
     $data["title"] = "ADMINISTRATION";
     $data["tabAgency"] = $this->agency->getAgency();
@@ -60,7 +78,7 @@ class Main extends CI_Controller{
       $data["user"] = $this->user->getUser($this->input->post("lastname"), $this->input->post("password"));
     }
     if (!isset($data["user"]) && !$session){
-      redirect(site_url("main/cnxAdm"));
+      redirect(site_url("main"));
     }
     else
     {
@@ -243,8 +261,109 @@ class Main extends CI_Controller{
     }
   }
 
-  public function unCnx(){
-    session_destroy();
-    redirect("main/index");
+  //-------------------------------- MANAGE PARKCAR
+  public function manageOneParkcar($id = NULL){
+    $data["title"] = "Gestion parc des voitures";
+    $data["idAgency"] = $this->session->idAgency;
+    $data["tabBooking"] = $this->booking->getBooking();
+    // $data["tabModel"] = $this->modelcar->getModelcar();
+    // $data["tabBrand"] = $this->brandcar->getBrandcar();
+    $data["tabCar"] = $this->car->getCar();
+    $data["tabColor"] = $this->color->getColor();
+    $data["oneRow"] = $this->parkcar->getParkcarId($id, $this->session->idAgency);
+    $data["table"] = "parkcar";
+
+    $this->form_validation->set_error_delimiters('<div class="errorFormInscription">', '</div>');
+
+    $this->form_validation->set_rules("nbkm", "nombre de km", "required", array("required" => "Le nombre de km doit être saisi"));
+
+    if ($this->form_validation->run() === FALSE) {
+      $this->load->view("templates/headerHTML");
+      $this->load->view("templates/headerSub", $data);
+      $this->load->view("employAdmManage", $data);
+    }
+    else
+    {
+      $this->parkcar->manageParkcar($id);
+      $data["title"] = "Gestion d'une voiture du parc";
+      $data["user"]["lastname"] = $this->session->userLastname;
+      $data["user"]["role"] = $this->session->userRole;
+      $data["user"]["idAgency"] = $this->session->idAgency;
+      redirect("main/adm");
+    }
+  }  
+
+  public function deleteOneParkcar($id){
+    if (!$this->parkcar->deleteParkcar($id)) {
+      $msgError = "Vous ne pouvez pas supprimer cet utilisateur";
+      $this->adm($msgError);
+    }
+    else
+    {
+      $this->adm();
+    }
+  }
+  
+//------------------------------------------------------------------------
+// ------------------------- CUSTOMER'S PART -----------------------------
+//------------------------------------------------------------------------
+
+  //cnx with modal : ok or not = return to main
+  public function cnxCust(){
+    // test if the session exists
+    $session = isset($this->session->custEmail);
+
+    // cnx control
+    if (!$session) {
+      $data["cust"] = $this->customer->getCustomer($this->input->post("email"), $this->input->post("password"));
+    
+      if (isset($data["cust"])){
+        $this->session->custEmail = $data["cust"]["email"];
+        $this->session->custLastname = $data["cust"]["lastname"];
+        $this->session->custFirstname = $data["cust"]["firstname"];
+      }
+      redirect(site_url("main"));
+    }
+  }
+  
+  public function custManageProfil(){
+    $data["title"] = "Gestion de profil client";
+    $data["tabCity"] = $this->city->getCity();
+
+    // recovering of customer's information
+    if (isset($this->session->custEmail)){
+      $data['oneRow'] = $this->customer->getCustomerEmail($this->session->custEmail);
+    }
+      $this->load->view("templates/headerHTML");
+      $this->load->view("templates/headerSub", $data);
+      $this->load->view("custProfil", $data);
+      $this->load->view("templates/footer");
+  }
+
+  public function manageOneCustomer($id = NULL){
+    $data["title"] = "Gestion profil client";
+    $data["tabCity"] = $this->city->getCity();
+    $data["oneRow"] = $this->customer->getCustomerId($id);
+    // $data["table"] = "customer";
+
+    $this->form_validation->set_error_delimiters('<div class="errorFormInscription">', '</div>');
+
+    $this->form_validation->set_rules("lastname", "Nom", "required", array("required" => "Le nom doit être saisi"));
+    $this->form_validation->set_rules("firstname", "Prénom", "required", array("required" => "Le prénom doit être saisi"));
+    $this->form_validation->set_rules("password1", "Password", "required", array("required" => "Le mot de passe doit être saisi"));
+    $this->form_validation->set_rules("password2", "Password", "required|matches[password1]", array("required" => "Le mot de passe doit être saisi", "matches" => "Les 2 mots de passe doivent êtres identiques"));
+    $this->form_validation->set_rules("email", "Email", "required|valid_email|is_unique[customer.email]", array("required" => "L'email doit être saisi", "is_unique" => "L'email existe déjà, veuillez en saisir un autre"));
+
+    if ($this->form_validation->run() === FALSE) {
+      $this->load->view("templates/headerHTML");
+      $this->load->view("templates/headerSub", $data);
+      $this->load->view("custProfil", $data);
+    }
+    else
+    {
+      $this->customer->manageCustomer($id);
+      redirect("main");
+    }
+
   }
 }

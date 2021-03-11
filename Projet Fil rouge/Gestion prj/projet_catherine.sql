@@ -118,8 +118,10 @@ CREATE TABLE color(
 
 CREATE TABLE modelCar(
         id    Int  Auto_increment  NOT NULL ,
-        model Varchar (20) NOT NULL
+        model Varchar (20) NOT NULL,
+        id_brand Int NOT NULL
 	,CONSTRAINT modelCar_PK PRIMARY KEY (id)
+	,CONSTRAINT car_brandCar_FK FOREIGN KEY (id_brandCar) REFERENCES brandCar(id)
 )ENGINE=InnoDB;
 
 

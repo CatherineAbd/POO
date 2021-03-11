@@ -10,7 +10,7 @@
       <option value="booking" id="selectbooking">booking</option>
     </select>
   </div>
-  <p id="superAdmError"><?= $msgError??"" ?></p>
+  <p id="employAdmError"><?= $msgError??"" ?></p>
   <?php
     $this->load->view("templates/mainParkCar.php");
     $this->load->view("templates/mainBooking.php");

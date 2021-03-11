@@ -1,3 +1,5 @@
+<!-- variables passées par $data : $title -->
+
 <header class="mainHeader">
   <div class="mainHeaderLogo">
     <?= img(array("src" => "assets/img/logo2.png", "class" => "mainHeaderLogoImg")); ?>

@@ -1,7 +1,9 @@
 <div class="admCont">
   <?php
     switch ($table) {
-      case "user" : $meth = "manageOneUser";
+      case "parkcar" : $meth = "manageOneParkcar";
+        break;
+      case "booking" : $meth = "manageOneBooking";
         break;
     }
     if (isset($oneRow["id"]) || !empty(set_value("id)"))) {
@@ -22,8 +24,8 @@
   ?>
 
   <!-- <?php
-  if ($table == "roleUser"){
-    $this->load->view("templates/manageRoleUser.php", $data);
+  if ($table == "booking"){
+    $this->load->view("templates/manageBooking.php", $data);
   }
   ?> -->
 
