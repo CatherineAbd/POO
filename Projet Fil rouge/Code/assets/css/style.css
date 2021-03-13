@@ -5,6 +5,9 @@
   --colTxtBanners : white;
   --fontTitle : 'Philosopher';
   --fontSizeTitle : 24px;
+  --pathImgBackHome : url("/assets/img/route_lacets_snow.jpg");
+  --pathImgBackAdm : url("/assets/img/Gears.jpg");
+  --pathImgBackFindCar: url("/assets/img/route_lacets.jpg");
 }
 
 @font-face {
@@ -16,18 +19,30 @@
   margin: 0;
   padding: 0;
   font-family: 'Philosopher';
-}
+}  
 
 /* global styles */
 
+.iconField{
+  display: inline-block;
+  width: 20px;
+}
+
+/*----------------*/
+/* main Styles */
+/*----------------*/
+
 .mainCont{
-  background-image: url("/assets/img/route_lacets_snow.jpg");
+  /* background-image: url("/assets/img/route_lacets_snow.jpg"); */
+  background-image: var(--pathImgBackHome);
   background-repeat: no-repeat;
   background-size: cover;
   background-position: center;
   color: var(--colTxtBanners);
   height: 100vh;
-}
+  display: flex;
+  align-items: center;
+}  
 
 .mainHeader{
   position: fixed;
@@ -39,6 +54,18 @@
   display: flex;
   justify-content: space-between;
   align-items: center;
+}  
+
+.mainSearch {
+  height: 200px;
+  background-color: rgb(0, 0, 0, 0.5);
+  padding: 20px;
+  box-shadow: 5px 5px 5px black;
+  backdrop-filter: blur(5px);
+}  
+
+.divFormSearch{
+  opacity: 1;
 }
 
 .mainHeaderLogoImg{
@@ -49,6 +76,168 @@
 .mainHeaderTitle{
   font-family: 'Philosopher', sans-serif;
 }
+
+/*----------------*/
+/* NavSide Styles */
+/*----------------*/
+.navSideCont{
+  background-color: rgba(0, 0, 0, 0.75);
+  color: white;
+  border-radius: 0px 4px 4px 0px;
+  width: 0px;
+  transition: 300ms;
+  overflow:hidden;
+}
+
+.navSideCont{
+  top: 46px;
+  position: fixed;
+}
+
+.navSideBtn{
+  top: 46px;
+  position: fixed;
+  margin-left: 0px;
+  transition: 300ms;
+}
+
+.navSideLst{
+  list-style-type: none;
+}
+
+.navSideBtn{
+  background-color: rgba(0, 0, 0, 0.75);
+  border-radius: 0px 4px 4px 0px;
+  width : 15px;
+  height: 20px;
+  text-align: center;
+}
+
+/*-------------------*/
+/* CustProfil Styles */
+/*-------------------*/
+
+.custBody{
+  width: 75vw;
+  margin-left: 250px;
+}
+
+.cnxCustCont{
+  background-image: var(--pathImgBackAdm);
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-position: center;
+  background-attachment: fixed;
+  /* color: var(--colTxtBanners); */
+  min-height: 100vw;
+  display: flex;
+  justify-content: center;
+}
+
+.cnxCustForm{
+  margin-top: 100px;
+}
+
+
+/*----------------*/
+/* CarFind Styles */
+/*----------------*/
+.carFindCont{
+  background-image: var(--pathImgBackFindCar);
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-position: center;
+  background-attachment: fixed;
+  /* color: var(--colTxtBanners); */
+  min-height: 100vw;
+  }
+
+.carFindShowCrit, .carFindCriteria{
+  background-color: rgba(0, 0, 0, 0.75);
+  color: white;
+  margin-top: 46px;
+  margin-left: 100px;
+  width: 100vw;
+  padding: 20px;
+  backdrop-filter: blur(3px);
+}
+
+.carFindShowCrit{
+  margin-top: 46px;
+}
+
+.carFindCriteria{
+  margin-top: 20px;
+  margin-bottom: 20px;
+}
+
+.cardFindCars{
+  color: black;
+}
+
+.carFindImg{
+  width: 150px;
+  height: auto;
+}
+
+.btnCard{
+  transform: scale(0.5);
+}
+
+.btnCard:active{
+  transform: scale(1);
+}
+
+.cardCar{
+  width: 300px;
+}
+
+/*----------------------*/
+/* CreateBooking Styles */
+/*----------------------*/
+.createBookingCont{
+  background-image: var(--pathImgBackFindCar);
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-position: center;
+  background-attachment: fixed;
+  /* color: var(--colTxtBanners); */
+  height: 100vh;
+  }
+
+
+/*----------------------*/
+/* ManageBooking Styles */
+/*----------------------*/
+.custMainBookingCont{
+  background-image: var(--pathImgBackFindCar);
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-position: center;
+  /* color: var(--colTxtBanners); */
+  height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.custMainBookingTable{
+  width: 100vw;
+  margin-left: 100px;
+}
+
+.manageBookingInputRO{
+  background-color: #cccccc;
+}
+
+.manageBookingLabel{
+  display: inline-block;
+  width: 170px;
+}
+
+/*----------------*/
+/*  Footer Styles */
+/*----------------*/
 
 .globalFooter{
   position: fixed;
@@ -76,13 +265,13 @@
 }
 
 .admCont, .custCont{
-  background-image: url("/assets/img/Gears.jpg");
+  background-image: var(--pathImgBackAdm);
   background-repeat: no-repeat;
   background-size: cover;
   background-position: center;
   color: var(--colBackBanners);
   height: 100vh;
-  margin-top: 100px;
+  margin-top: 46px;
 }
 
 #tableRoleUser{

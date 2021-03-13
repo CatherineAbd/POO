@@ -1,4 +1,4 @@
-<div class="admCont">
+<div class="container-fluid admCont">
   <?php
     switch ($table) {
       case "parkcar" : $meth = "manageOneParkcar";
@@ -23,17 +23,16 @@
     }
   ?>
 
-  <!-- <?php
+  <?php
   if ($table == "booking"){
     $this->load->view("templates/manageBooking.php", $data);
   }
-  ?> -->
+  ?>
 
+  </form>
 
   <div class="">
     <a href="<?= site_url('main/adm') ?>" class="superAdmManageBtnMain">Retour</a>
   </div>
 
 </div>
-
-f

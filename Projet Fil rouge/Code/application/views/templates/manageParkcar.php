@@ -1,7 +1,3 @@
-<?php
-var_dump($oneRow);
-?>
-
 <div class="superAdmForm">
     <div class="inputRow">
       <div class="formId inputCol">
@@ -35,7 +31,7 @@ var_dump($oneRow);
         </select>
       </div>
       <div class="formNbkm inputCol">
-          <span class="iconField"><i class="fas fa-info"></i></span>
+          <span class="iconField"><i class="fas fa-route"></i></span>
           <input type="number" id="nbkm" name="nbkm" placeholder="nb de km" value="<?= $oneRow['nbKm']??set_value('nbkm') ?>">
           <p><?php echo form_error('nbkm'); ?></p>
       </div>

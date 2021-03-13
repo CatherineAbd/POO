@@ -64,3 +64,19 @@ function employAdmSelectTable(){
     indexCurrent = index;
   }
 }
+
+var openedMenu = false;
+
+function openCloseMenu(){
+  if (openedMenu == false){
+    openedMenu = true;
+    document.getElementById("navSideCont").style.width = "80px";
+    document.getElementById("navSideBtn").style.marginLeft = "80px";
+  } else {
+    openedMenu = false;
+    document.getElementById("navSideCont").style.width = "0px";
+    document.getElementById("navSideBtn").style.marginLeft = "0px";
+    
+  }
+}
+

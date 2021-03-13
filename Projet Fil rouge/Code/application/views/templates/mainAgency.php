@@ -26,7 +26,7 @@
           <td><?= $oneTabRow['address']?></td>
           <td><?= $oneTabRow['zipcode']?></td>
           <td><?= $oneTabRow['nameCity']?></td>
-          <td><?= $oneTabRow['archived']?></td>
+          <td><?= $oneTabRow['archived'] == TRUE ? 'Oui' : 'Non' ?></td>
           <td>
             <a href="<?= site_url('main/manageOneAgency/') . $oneTabRow['id'] ?>" class="superBtn"><i class="fas fa-pencil-alt"></i></a>
           </td>

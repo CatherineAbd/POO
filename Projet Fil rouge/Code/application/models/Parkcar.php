@@ -3,26 +3,14 @@
     
     public function getParkcarId($id = FALSE, $id_agency){
 
-      // $query = "SELECT p.id, p.id_car, p.nbKm, p.archived, p.id_color, co.color, m.model, b.brand FROM parkcar p " .
-      // "JOIN car c ON c.id = p.id_car ".
-      // "JOIN modelcar m ON m.id = c.id_modelCar ".
-      // "JOIN brandcar b ON b.id = c.id_brandCar ".
-      // "JOIN color co ON co.id = p.id_color " .
-      //  "WHERE p.id_agency = " . $id_agency;
-      // if ($id === FALSE){
-      //   return $this->db->query($query)->result_array();
-      // }
-      // else
-      // {
-      //   $query = $query . " AND p.id = " . $id;
-      //   return $this->db->query($query)->row_array();
-      // }
-      $this->db->select("p.id, p.id_car, p.nbKm, p.archived, p.id_color, co.color, m.model, b.brand");
+      $this->db->select("p.id, p.id_car, p.nbKm, p.archived, p.id_color, p.id_agency, co.color, m.model, b.brand, c.nbDoors, c.carBoot, c.gearBox, c.nbPlaces, c.price, co.color, m.model, b.brand, ca.category, a.name");
       $this->db->from("parkcar p");
       $this->db->join("car c", "c.id = p.id_car");
       $this->db->join("modelcar m", "m.id = c.id_modelCar");
       $this->db->join("brandcar b", "b.id = c.id_brandCar");
+      $this->db->join("categorycar ca", "ca.id = c.id_categoryCar");
       $this->db->join("color co", "co.id = p.id_color");
+      $this->db->join("agency a", "a.id = p.id_agency");
       $this->db->where(array("p.id_agency" => $id_agency));
       if ($id === FALSE){
         return $this->db->get()->result_array();
@@ -77,5 +65,26 @@
       // }
       return true;
     }
+
+    public function getParkcarCriteria(){
+      $id_agency = $this->session->id_agency;
+      $id_category = $this->session->id_category;
+      $nbPlaces = $this->session->nbPlaces;
+
+      $this->db->select("p.id, p.id_car, p.nbKm, p.archived, p.id_color, p.id_agency, c.pathImg, co.color, m.model, b.brand");
+      $this->db->from("parkcar p");
+      $this->db->join("car c", "c.id = p.id_car");
+      $this->db->join("modelcar m", "m.id = c.id_modelCar");
+      $this->db->join("brandcar b", "b.id = c.id_brandCar");
+      $this->db->join("color co", "co.id = p.id_color");
+      $this->db->where(array("p.id_agency" => $id_agency));
+      if (!empty($this->input->post("id_category"))){
+        $this->db->where(array("c.id_categoryCar" => $id_category));
+      }
+      if (!empty($this->input->post("nbplaces"))){
+        $this->db->where(array("c.nbPlaces" => $nbPlaces));
+      }
+      return $this->db->get()->result_array();
+ }
   
-  }
+}

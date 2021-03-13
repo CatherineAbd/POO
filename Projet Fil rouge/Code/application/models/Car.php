@@ -8,6 +8,7 @@
       $this->db->join("brandcar b", "b.id = c.id_brandcar");
       return $this->db->get()->result_array();
     }
+
   }
 
 ?>
