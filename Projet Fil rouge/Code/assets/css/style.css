@@ -8,6 +8,8 @@
   --pathImgBackHome : url("/assets/img/route_lacets_snow.jpg");
   --pathImgBackAdm : url("/assets/img/Gears.jpg");
   --pathImgBackFindCar: url("/assets/img/route_lacets.jpg");
+  --pathImgBackCustProf: url("/assets/img/route_lacets_mer.jpg");
+  --pathImgBackCustCnx: url("/assets/img/route_lacets_mer.jpg");
 }
 
 @font-face {
@@ -49,16 +51,17 @@
   top:0;
   left: 0;
   width: 100%;
+  margin: 0px;
   background-color: var(--colBackBanners);
   color: var(--colTxtBanners);
   display: flex;
-  justify-content: space-between;
   align-items: center;
   z-index: 2;
 }  
 
 .mainSearch {
   height: 200px;
+  width: 500px;
   background-color: rgb(0, 0, 0, 0.5);
   padding: 20px;
   box-shadow: 5px 5px 5px black;
@@ -76,6 +79,7 @@
 
 .mainHeaderTitle{
   font-family: 'Philosopher', sans-serif;
+  font-size: 28px;
 }
 
 /*----------------*/
@@ -121,22 +125,41 @@
 .custBody{
   width: 75vw;
   margin-left: 250px;
-}
+  padding-top: 40px;
+ }
 
-.cnxCustCont{
-  background-image: var(--pathImgBackAdm);
+.custCont{
+  background-image: var(--pathImgBackCustProf);
   background-repeat: no-repeat;
   background-size: cover;
   background-position: center;
   background-attachment: fixed;
-  /* color: var(--colTxtBanners); */
+  min-height: 100vw;
+  margin-top: 46px;
+}
+
+.cnxCustCont{
+  background-image: var(--pathImgBackCustCnx);
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-position: center;
+  background-attachment: fixed;
   min-height: 100vw;
   display: flex;
-  justify-content: center;
+  justify-content:flex-start;
 }
 
 .cnxCustForm{
+  margin-left: 200px;
   margin-top: 100px;
+}
+
+.cnxCustBtnCreateProfil{
+  color: #093C84;
+}
+
+.cnxCustBtnCreateProfil:hover{
+  color: #0c5ed8;
 }
 
 
@@ -253,16 +276,17 @@
   background-color: var(--colBackBanners);
   color: var(--colTxtBanners);
   display: flex;
-  justify-content: space-between;
   align-items: center;
+  margin:0px;
 }
 
-.footBtnAdm{
+.footerBtnAdm{
   transform: rotate(360deg);
   transition: 450ms ease-in-out;
+  color: #FF8671;
 }
 
-.footBtnAdm:hover{
+.footerBtnAdm:hover{
   transform: rotate(0deg);
 }
 
@@ -270,7 +294,7 @@
   margin-top: 50px;
 }
 
-.admCont, .custCont{
+.admCont{
   background-image: var(--pathImgBackAdm);
   background-repeat: no-repeat;
   background-size: cover;
@@ -296,6 +320,10 @@
   display: none;
 }
 
+#tableCustomer{
+  display: none;
+}
+
 #tableParkcar{
   display: none;
 }
@@ -303,3 +331,4 @@
 #tableBooking{
   display: none;
 }
+

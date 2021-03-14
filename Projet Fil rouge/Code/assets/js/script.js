@@ -22,6 +22,8 @@ function superAdmSelectTable(){
         break;
       case 4: document.getElementById("tableAgency").style.display = "block";
         break;
+      case 5: document.getElementById("tableCustomer").style.display = "block";
+        break;
     }
     // hide last div showed
     switch (indexCurrent) {
@@ -32,6 +34,8 @@ function superAdmSelectTable(){
       case 3: document.getElementById("tableCity").style.display = "none";
         break;
       case 4: document.getElementById("tableAgency").style.display = "none";
+        break;
+      case 5: document.getElementById("tableCustomer").style.display = "none";
         break;
     }
     indexCurrent = index;

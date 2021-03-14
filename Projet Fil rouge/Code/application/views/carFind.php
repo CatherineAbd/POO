@@ -48,7 +48,7 @@
   <div class="carFindCriteria">
     <?= form_open("main/searchCar") ?>
       <span class="iconField"><i class="fas fa-store"></i></span>
-      <select name="id_agency" id="id_agency">
+      <select name="id_agency" id="id_agency" required>
       <option value="" disabled selected>Sélectionnez une agence</option>
       <?php
           foreach($tabAgency as $agency){

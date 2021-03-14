@@ -125,6 +125,7 @@ public function validate_DateSupDay($inputDate, $endDate){
     $data["tabAgency"] = $this->agency->getAgency();
     $data["tabRoleUser"] = $this->roleuser->getRoleUser();
     $data["tabCity"] = $this->city->getCity();
+    $data["tabCustomer"] = $this->customer->getCustomerId();
     // error on delete
     if ($msgError <> FALSE){
       $data["msgError"] = $msgError;
@@ -545,6 +546,17 @@ public function validate_DateSupDay($inputDate, $endDate){
     }
   }
 
+  public function deleteOneCustomer($id){
+    if (!$this->customer->deleteCustomer($id)) {
+      $msgError = "Vous ne pouvez pas supprimer ce client";
+      $this->adm($msgError);
+    }
+    else
+    {
+      $this->adm();
+    }
+  }
+  
   public function createBooking($id, $id_agency){
     if ($this->session->custEmail){
       $data["title"] = "Création de la réservation";
@@ -555,6 +567,7 @@ public function validate_DateSupDay($inputDate, $endDate){
       $data["oneRow"] = $this->parkcar->getParkcarId($id, $id_agency);
       $this->load->view("templates/headerHTML");
       $this->load->view("templates/headerSub", $data);
+      $this->load->view("templates/navSide");
       $this->load->view("createBooking", $data);
       $this->load->view("templates/footer");
     }

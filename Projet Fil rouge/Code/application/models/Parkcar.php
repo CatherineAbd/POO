@@ -91,19 +91,25 @@
       // $this->db->where_not_in("p.id", "(select id_parkcar from booking where id_stateBooking <> 3 and (date(startDate) < " . $endDate . "and date(startEnd) > ". $startDate . "))");
       // return $this->db->get()->result_array();
 
-      return $this->db->query("select p.id, p.id_car, p.nbKm, p.archived, p.id_color, p.id_agency, c.pathImg, co.color, m.model, b.brand, c.nbPlaces, c.nbDoors, c.price, c.carBoot, c.gearBox 
+      $query = "select p.id, p.id_car, p.nbKm, p.archived, p.id_color, p.id_agency, c.pathImg, co.color, m.model, b.brand, c.nbPlaces, c.nbDoors, c.price, c.carBoot, c.gearBox 
       from parkcar p
       join car c on c.id = p.id_car
       join modelcar m on m.id = c.id_modelCar
       join brandcar b on b.id = c.id_brandCar
       join color co on co.id = p.id_color
       where
-      p.id_agency = ". $id_agency . " and
-      c.id_categoryCar = ". $id_category . " and 
+      p.id_agency = ". $id_agency . " and 
       p.id not in
-        (select id_parkcar from booking 
-          where id_stateBooking <> 3 and
-          (date(startDate) < '". $endDate . "' and date(startEnd) > '" . $startDate . "'))")->result_array();
+      (select id_parkcar from booking 
+      where id_stateBooking <> 3 and
+      (date(startDate) < '". $endDate . "' and date(startEnd) > '" . $startDate . "'))";
+      if (!empty($id_category)){
+        $query = $query . " and c.id_categoryCar = ". $id_category;
+      }
+      if (!empty($nbPlaces)){
+        $query = $query . " and c.id_nbPlaces = ". $nbPlaces;
+      }
+      return $this->db->query($query)->result_array($query);
  }
   
 }

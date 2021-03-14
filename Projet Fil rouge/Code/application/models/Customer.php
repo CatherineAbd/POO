@@ -20,9 +20,10 @@ class Customer extends CI_Model{
   }
   
   public function getCustomerId($id = FALSE){
-    $this->db->select("*");
+    $this->db->select("c.id, c.lastname, c.firstname, c.password, c.birthdate, c.phone, c.email, c.address, c.zipcode, c.archived, c.id_city, ci.nameCity");
+    // $this->db->select("*");
     $this->db->from("customer c");
-    // $this->db->join("roleuser r", "id_roleuser = r.id");
+    $this->db->join("city ci", "ci.id = c.id_city");
     if ($id === FALSE){
       return $this->db->get()->result_array();
     }
@@ -86,17 +87,17 @@ class Customer extends CI_Model{
     }
   }
 
-  // delete is possible if user is not the only one for an agency
+  // delete is possible if the customer has no booking
   public function ctrlDeleteCustomer($id){
-    // $query = "SELECT COUNT(*) total FROM user WHERE id_agency = ( SELECT id_agency FROM user WHERE id = " . $id . ")";
-    // $result = $this->db->query($query)->row()->total;
+    $query = "SELECT COUNT(*) total FROM booking WHERE id_customer = $id AND id_stateBooking <> 3";
+    $result = $this->db->query($query)->row()->total;
 
-    // if ($result > 1){
+    if ($result == 0){
       return true;
-    // }
-    // else
-    // {
-    //   return false;
-    // }
+    }
+    else
+    {
+      return false;
+    }
   }
 }

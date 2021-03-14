@@ -1,17 +1,17 @@
-    <div class="globalFooter">
-      <p><em>&copy; 2021</em></p>
-      <div class="footLegalMentions">
+    <div class="row globalFooter">
+      <p class="col-5"><em>&copy; 2021</em></p>
+      <div class="col-5 footLegalMentions">
         Mentions légales
       </div>
-      <div class="footAdm">
+      <div class="col-2 footAdm">
         <!-- <button type="button" class="btn footerSubText" data-toggle="modal" data-target="#footerCnxAdmModal">
           <i class="fas fa-2x fa-cog footerBtnAdm"></i>
         </button> -->
-        <div class="footBtnAdmUnCnx">
+        <!-- <div class="footBtnAdmUnCnx"> -->
         <?php
         if (!isset($this->session->userLastname) && !isset($this->session->custEmail)){
         ?>
-          </div>
+          <!-- </div> -->
           <a href="#" class="btn" data-toggle="modal" data-target="#footerCnxAdmModal">
             <i class="fas fa-2x fa-cog footerBtnAdm"></i>
           </a>
@@ -20,13 +20,11 @@
         elseif (!isset($this->session->custEmail))
         {
         ?>
-          <a href="<?= site_url('main/unCnx') ?>" ><i class="fas fa-2x fa-times footerBtnAdm"></i></a>
-          </div>
-          <div class="footBtnAdmCnx">
-            <a href="<?= site_url('main/cnxAdm') ?>" class="btn">
-              <i class="fas fa-2x fa-cog footerBtnAdm"></i>
-            </a>
-          </div>
+          <a href="<?= site_url('main/unCnx') ?>" class="btn"><i class="fas fa-2x fa-times footerBtnAdm"></i></a>
+          <!-- </div> -->
+          <!-- <div class="footBtnAdmCnx"> -->
+            <a href="<?= site_url('main/cnxAdm') ?>" class="btn"><i class="fas fa-2x fa-cog footerBtnAdm"></i></a>
+          <!-- </div> -->
         <?php
         }
         ?>

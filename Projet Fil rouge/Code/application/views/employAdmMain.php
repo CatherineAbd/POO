@@ -1,4 +1,5 @@
-<div class="admCont"
+<div class="admCont">
+  <p class="employAdmMain">Agence : <?= $this->session->idAgency?> </p>
   <h2>Bonjour <?= $user['lastname']?> </h2>
 
   <!-- list display -->
