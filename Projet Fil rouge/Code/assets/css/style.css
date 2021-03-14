@@ -54,6 +54,7 @@
   display: flex;
   justify-content: space-between;
   align-items: center;
+  z-index: 2;
 }  
 
 .mainSearch {
@@ -178,6 +179,7 @@
 .carFindImg{
   width: 150px;
   height: auto;
+  border-radius: 10px;
 }
 
 .btnCard{
@@ -205,6 +207,10 @@
   height: 100vh;
   }
 
+.createBookingInfo, .createBookingCriteria, .createBookingPrice{
+  background-color: rgba(0, 0, 0, 0.75);
+  color: white;
+}
 
 /*----------------------*/
 /* ManageBooking Styles */

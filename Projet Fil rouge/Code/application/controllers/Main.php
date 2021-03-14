@@ -57,24 +57,48 @@ class Main extends CI_Controller{
 
     $this->form_validation->set_error_delimiters('<div class="errorFormInscription">', '</div>');
 
-    $this->form_validation->set_rules("startDate", "Date de début", "required", array("required" => "La date de début doit être renseignée"));
-    $this->form_validation->set_rules("endDate", "Date de fin", "required", array("required" => "La date de fin doit être renseignée"));
+    $endDate = $this->input->post("endDate");
+    $this->form_validation->set_rules("startDate", "Date de début", "required|callback_validate_DateSupDay[$endDate]", array("required" => "La date de début doit être renseignée"));
+    $this->form_validation->set_rules("endDate", "Date de fin", "required|callback_validate_DateSupDay[$endDate]", array("required" => "La date de fin doit être renseignée"));
 
     if ($this->form_validation->run() === FALSE) {
+      $data["tabCars"] = array();
     }
     else{
+      $data["tabCars"] = $this->parkcar->getParkcarCriteria();
     }
-    $data["tabCars"] = $this->parkcar->getParkcarCriteria();
     $data["tabAgency"] = $this->agency->getAgency();
     $data["tabCategory"] = $this->category->getCategory();
-    $this->load->view("templates/headerHTML");
+    // var_dump($this->input->post("startDate"));
+    // var_dump(date("Y-m-d"));
+    // var_dump($data["tabCars"]);
     $this->load->view("templates/headerSub", $data);
     if (isset($this->session->custEmail)){
-      $this->load->view("templates/navSide");
-    }
+        $this->load->view("templates/navSide");
+      }
+      $this->load->view("templates/headerHTML");
     $this->load->view("carFind", $data);
     $this->load->view("templates/footer");
 
+}
+
+public function validate_DateSupDay($inputDate, $endDate){
+  if (strtotime($inputDate) < strtotime(date("Y-m-d"))) {
+    $this->form_validation->set_message('validate_DateSupDay', 'La date doit être supérieure ou égale à la date du jour');
+    var_dump("false");
+    return false;
+  }
+  else
+  {
+    if (strtotime($inputDate) - strtotime($endDate) > 0){
+      $this->form_validation->set_message('validate_DateSupDay', 'La date de début doit être inférieure à la date de fin');
+      return false;
+      }
+    else
+    {
+      return true;
+    }
+  }
 }
 
   public function unCnx(){
@@ -480,10 +504,11 @@ class Main extends CI_Controller{
       $this->load->view("templates/footer");
   }
 
-  public function manageOneCustomer($id = NULL, $crBooking){
+  public function manageOneCustomer($crBooking, $id = NULL){
     $data["title"] = "Gestion profil client";
     $data["tabCity"] = $this->city->getCity();
     $data["oneRow"] = $this->customer->getCustomerId($id);
+    $data["crBooking"] = $crBooking;
     // $data["table"] = "customer";
 
     $this->form_validation->set_error_delimiters('<div class="errorFormInscription">', '</div>');
@@ -510,11 +535,12 @@ class Main extends CI_Controller{
       }
       // the profile was created for the booking's creation
       if ($crBooking) {
-        
+        // $path = "main/createBookin(". $this->session->idCarBook . "," . $this->session->idAgCarBook. ")";
+        redirect("main/createBooking/". $this->session->idCarBook . "/" . $this->session->idAgCarBook);
       }
       else
       {
-        redirect("main");
+        redirect("main/searchCar");
       }
     }
   }

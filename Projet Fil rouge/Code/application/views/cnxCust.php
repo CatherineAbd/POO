@@ -9,7 +9,14 @@
       <input type="submit" value="Connexion">
     </form>
     <div class="cnxCustBtnCreateProfil">
-      <a href="<?= site_url('main/custManageProfil') ?> " title="Gestion profil"><i class="fas fa-2x fa-user-edit headerBtnCnx"></i></a>
+      <?php
+        $path = "main/custManageProfil";
+        if (isset($this->session->crBooking)) {
+          $path = $path . "/" . $this->session->crBooking;
+        }
+      ?>
+      <!-- <a href="<?= site_url('main/custManageProfil/' . $this->session->crBooking??'') ?> " title="Gestion profil"><i class="fas fa-2x fa-user-edit headerBtnCnx"></i></a> -->
+      <a href="<?= site_url($path) ?> " title="Gestion profil"><i class="fas fa-2x fa-user-edit headerBtnCnx"></i></a>
     </div>
   </div>
 </div>

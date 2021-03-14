@@ -70,21 +70,40 @@
       $id_agency = $this->session->id_agency;
       $id_category = $this->session->id_category;
       $nbPlaces = $this->session->nbPlaces;
+      $endDate = $this->session->endDate;
+      $startDate = $this->session->startDate;
 
-      $this->db->select("p.id, p.id_car, p.nbKm, p.archived, p.id_color, p.id_agency, c.pathImg, co.color, m.model, b.brand");
-      $this->db->from("parkcar p");
-      $this->db->join("car c", "c.id = p.id_car");
-      $this->db->join("modelcar m", "m.id = c.id_modelCar");
-      $this->db->join("brandcar b", "b.id = c.id_brandCar");
-      $this->db->join("color co", "co.id = p.id_color");
-      $this->db->where(array("p.id_agency" => $id_agency));
-      if (!empty($this->input->post("id_category"))){
-        $this->db->where(array("c.id_categoryCar" => $id_category));
-      }
-      if (!empty($this->input->post("nbplaces"))){
-        $this->db->where(array("c.nbPlaces" => $nbPlaces));
-      }
-      return $this->db->get()->result_array();
+      // var_dump($this->session);
+
+      // $this->db->select("p.id, p.id_car, p.nbKm, p.archived, p.id_color, p.id_agency, c.pathImg, co.color, m.model, b.brand");
+      // $this->db->from("parkcar p");
+      // $this->db->join("car c", "c.id = p.id_car");
+      // $this->db->join("modelcar m", "m.id = c.id_modelCar");
+      // $this->db->join("brandcar b", "b.id = c.id_brandCar");
+      // $this->db->join("color co", "co.id = p.id_color");
+      // $this->db->where("p.id_agency", $id_agency);
+      // if (!empty($this->input->post("id_category"))){
+      //   $this->db->where(array("c.id_categoryCar" => $id_category));
+      // }
+      // if (!empty($this->input->post("nbplaces"))){
+      //   $this->db->where(array("c.nbPlaces" => $nbPlaces));
+      // }
+      // $this->db->where_not_in("p.id", "(select id_parkcar from booking where id_stateBooking <> 3 and (date(startDate) < " . $endDate . "and date(startEnd) > ". $startDate . "))");
+      // return $this->db->get()->result_array();
+
+      return $this->db->query("select p.id, p.id_car, p.nbKm, p.archived, p.id_color, p.id_agency, c.pathImg, co.color, m.model, b.brand, c.nbPlaces, c.nbDoors, c.price, c.carBoot, c.gearBox 
+      from parkcar p
+      join car c on c.id = p.id_car
+      join modelcar m on m.id = c.id_modelCar
+      join brandcar b on b.id = c.id_brandCar
+      join color co on co.id = p.id_color
+      where
+      p.id_agency = ". $id_agency . " and
+      c.id_categoryCar = ". $id_category . " and 
+      p.id not in
+        (select id_parkcar from booking 
+          where id_stateBooking <> 3 and
+          (date(startDate) < '". $endDate . "' and date(startEnd) > '" . $startDate . "'))")->result_array();
  }
   
 }

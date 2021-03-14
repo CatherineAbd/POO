@@ -71,10 +71,15 @@
           }
           ?>
       </select>
+      
       <span class="iconField"><i class="fas fa-calendar-alt"></i></span>
       <input type="date" id="startDate" name="startDate" placeholder="date début" value="<?= isset($startDate)?$startDate:''?>" required>
+      <p><?php echo form_error('startDate'); ?></p>
+      
       <span class="iconField"><i class="fas fa-calendar-alt"></i></span>
       <input type="date" id="endDate" name="endDate" placeholder="date fin"value="<?= isset($endDate)?$endDate:''?>" required>
+      <p><?php echo form_error('endDate'); ?></p>
+      
       <input type="submit" name="submit" value="Valider les critères" class="btnSubmit" />
     </form>
   </div>
@@ -90,7 +95,16 @@
                   <?= img(array("src" => "assets/img/cars/" . $oneCar["pathImg"], "class" => "carFindImg")); ?>
                   <h5 class="card-title"> <?= $oneCar["model"] . " " . $oneCar["brand"]?></h2>
                 </div>
-                <div class="card-body"> Voiture</div>
+                <div class="card-body">
+                <p> Couleur : <?= $oneCar["color"] ?> </p>
+                <p> nb de places : <?= $oneCar["nbPlaces"] ?> </p>
+                <p> nb de portes : <?= $oneCar["nbDoors"] ?> </p>
+                <p> vol coffre : <?= $oneCar["carBoot"] ?> </p>
+                <p> boîte : <?= $oneCar["gearBox"] ?> </p>
+                <p> prix : <?= $oneCar["price"] ?> </p>
+                <p> nbKm : <?= $oneCar["nbKm"] ?> </p>
+                <p> idParkcar : <?= $oneCar["id"] ?> </p>
+                </div>
                 <div class="card-footer"> <a href="<?= site_url('main/createBooking/') . $oneCar["id"] . "/" . $oneCar["id_agency"] ?> " class="btnCard">Réserver</a></div>
               </div>
             </div>

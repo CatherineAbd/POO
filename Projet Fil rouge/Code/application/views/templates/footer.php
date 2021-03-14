@@ -9,7 +9,7 @@
         </button> -->
         <div class="footBtnAdmUnCnx">
         <?php
-        if (!isset($this->session->userLastname)){
+        if (!isset($this->session->userLastname) && !isset($this->session->custEmail)){
         ?>
           </div>
           <a href="#" class="btn" data-toggle="modal" data-target="#footerCnxAdmModal">
@@ -17,10 +17,10 @@
           </a>
         <?php
         }
-        else
+        elseif (!isset($this->session->custEmail))
         {
         ?>
-          <a href="<?= site_url('main/unCnx') ?>" >Déconnexion</a>
+          <a href="<?= site_url('main/unCnx') ?>" ><i class="fas fa-2x fa-times footerBtnAdm"></i></a>
           </div>
           <div class="footBtnAdmCnx">
             <a href="<?= site_url('main/cnxAdm') ?>" class="btn">

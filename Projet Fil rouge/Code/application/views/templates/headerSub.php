@@ -11,8 +11,11 @@
 
   <div class="mainHeaderBtnUnCnx">
     <?php
-      if (isset($this->session->userLastname)){
-      }
+    if (isset($this->session->custEmail)){
+    ?>
+        <a href="<?= site_url('main/unCnx') ?>" title="Déconnexion"><i class="fas fa-2x fa-user-times headerBtnUnCnx"></i></a>
+    <?php
+    }
     ?>
   </div>
   <div class="mainHeaderHome">
