@@ -52,6 +52,7 @@ class Main extends CI_Controller{
       $this->session->id_agency = $this->input->post("id_agency");
       $this->session->id_category = $this->input->post("id_category");
       $this->session->nbPlaces = $this->input->post("nbplaces");
+      $this->session->maxPrice = $this->input->post("price");
       $this->session->criteria = true;
     // }
 
@@ -242,15 +243,25 @@ public function validate_DateSupDay($inputDate, $endDate){
   }  
   
   public function deleteOneRoleUser($id){
-    $this->db->delete("roleUser", array("id" => $id));
-    redirect("main/adm");
+
+    if (!$this->roleuser->deleteRoleUser($id)) {
+      $msgError = "Vous ne pouvez pas supprimer ce rôle";
+      $this->adm($msgError);
+    }
+    else
+    {
+      $this->adm();
+    }
+
+    // $this->db->delete("roleUser", array("id" => $id));
+    // redirect("main/adm");
   }
 
   //-------------------------------- MANAGE CITY
 
   public function manageOneCity($id = NULL){
     $data["title"] = "Gestion city";
-    $data["oneRow"] = $this->city->getCityId($id);
+    $data["oneRow"] = $this->city->getCity($id);
     $data["table"] = "city";
 
     $this->form_validation->set_error_delimiters('<div class="errorFormInscription">', '</div>');

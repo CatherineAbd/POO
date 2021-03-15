@@ -1,9 +1,39 @@
     <div class="row globalFooter">
       <p class="col-5"><em>&copy; 2021</em></p>
-      <div class="col-5 footLegalMentions">
-        Mentions légales
+      <?php
+        if (!isset($this->session->userLastname) && !isset($this->session->custEmail)){
+      ?>
+          <div class="col-6 footLegalMentions">
+          <a href="#" class="footLegalMentionsLink" data-toggle="modal" data-target="#LegalMentionsModal">
+            Mentions légales  
+          </a>
+
+      <?php
+        }
+        else
+        {
+      ?>
+          <div class="col-5 footLegalMentions">
+          <a href="#" class="footLegalMentionsLink" data-toggle="modal" data-target="#LegalMentionsModal">
+            Mentions légales  
+          </a>
+      <?php
+        }
+      ?>
       </div>
-      <div class="col-2 footAdm">
+      <?php
+        if (!isset($this->session->userLastname) && !isset($this->session->custEmail)){
+      ?>
+          <div class="col-1 footAdm">
+      <?php
+        }
+        else
+        {
+      ?>
+          <div class="col-2 footAdm">
+      <?php
+        }
+      ?>
         <!-- <button type="button" class="btn footerSubText" data-toggle="modal" data-target="#footerCnxAdmModal">
           <i class="fas fa-2x fa-cog footerBtnAdm"></i>
         </button> -->
@@ -93,11 +123,15 @@
       </div>
     </div>
 
+    <?php
+      $this->load->view("/templates/footer_legal.php");
+    ?>
+
     <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js"
         integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo"
         crossorigin="anonymous"></script>
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/5.0.0-alpha1/js/bootstrap.min.js"></script>
   
-    <script src="<?= base_url('assets/js/script.js?v=2') ?>"></script>
+    <script src="<?= base_url('assets/js/script.js') ?>"></script>
   </body>
 </html>

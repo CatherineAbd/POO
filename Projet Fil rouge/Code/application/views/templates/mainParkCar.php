@@ -7,7 +7,6 @@
           <th class="col-2">Modèle</th>
           <th class="col-2">Couleur</th>
           <th class="col-2">nb km</th>
-          <th class="col-2">disponible</th>
           <th class="col-1"></th>
           <th class="col-1"></th>
         </tr>
@@ -21,7 +20,6 @@
           <td><?= $oneTabRow['brand']?></td>
           <td><?= $oneTabRow['model']?></td>
           <td><?= $oneTabRow['color']?></td>
-          <td><?= $oneTabRow['nbKm']?></td>
           <td><?= $oneTabRow['nbKm']?></td>
           <td>
             <a href="<?= site_url('main/manageOneParkcar/') . $oneTabRow['id'] ?>" class="superBtn"><i class="fas fa-pencil-alt"></i></a>

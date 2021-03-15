@@ -1,4 +1,5 @@
 <div class="tableConfig" id="tableUser">
+    <a href="<?= site_url('main/manageOneUser') ?>" class="superBtn"><i class="fas fa-plus-square"></i></a>
     <table class="table table-dark table-hover col-10">
       <thead>
         <tr>
@@ -44,6 +45,5 @@
       ?>
       </tbody>
     </table>
-    <a href="<?= site_url('main/manageOneUser') ?>" class="superBtn">+</a>
   </div>
 

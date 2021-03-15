@@ -1,4 +1,5 @@
 <div class="tableConfig" id="tableCity">
+    <a href="<?= site_url('main/manageOneCity') ?>" class="superBtn"><i class="fas fa-plus-square"></i></a>
     <table class="table table-dark table-hover col-10">
       <thead>
         <tr>
@@ -28,5 +29,4 @@
       ?>
       </tbody>
     </table>
-    <a href="<?= site_url('main/manageOneCity') ?>" class="superBtn">+</a>
 </div>

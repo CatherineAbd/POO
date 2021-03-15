@@ -31,4 +31,32 @@ class RoleUser extends CI_Model{
       return $this->db->insert('roleuser', $data);
     }
   }
+
+  public function deleteRoleUser($id){
+    if ($this->ctrlDeleteRoleUser($id)){
+      $this->db->delete("roleuser", array("id" => $id));
+      return true;
+    }
+      else
+    {
+      return false;
+    }
+  }
+
+  // delete is possible if user is not the only one for an agency
+  public function ctrlDeleteRoleUser($id){
+    $query = "SELECT COUNT(*) total FROM roleuser r
+    WHERE id IN (SELECT id_roleuser FROM user u where u.id_roleuser = r.id)
+    AND id = " . $id;
+    $result = $this->db->query($query)->row()->total;
+
+    if ($result > 0){
+      return false;
+    }
+    else
+    {
+      return true;
+    }
+  }
+
 }

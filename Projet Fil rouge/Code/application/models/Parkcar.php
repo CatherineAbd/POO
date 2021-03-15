@@ -3,7 +3,7 @@
     
     public function getParkcarId($id = FALSE, $id_agency){
 
-      $this->db->select("p.id, p.id_car, p.nbKm, p.archived, p.id_color, p.id_agency, co.color, m.model, b.brand, c.nbDoors, c.carBoot, c.gearBox, c.nbPlaces, c.price, co.color, m.model, b.brand, ca.category, a.name");
+      $this->db->select("p.id, p.id_car, p.nbKm, p.archived, p.id_color, p.id_agency, co.color, m.model, b.brand, c.nbDoors, c.carBoot, c.gearBox, c.nbPlaces, c.price, c.pathImg, co.color, m.model, b.brand, ca.category, a.name");
       $this->db->from("parkcar p");
       $this->db->join("car c", "c.id = p.id_car");
       $this->db->join("modelcar m", "m.id = c.id_modelCar");
@@ -51,19 +51,18 @@
       }
     }
   
-    // delete is possible if user is not the only one for an agency
+    // delete is possible if the car is not in an active booking
     public function ctrlDeleteParkcar($id){
-      // $query = "SELECT COUNT(*) total FROM user WHERE id_agency = ( SELECT id_agency FROM user WHERE id = " . $id . ")";
-      // $result = $this->db->query($query)->row()->total;
-  
-      // if ($result > 1){
-      //   return true;
-      // }
-      // else
-      // {
-      //   return false;
-      // }
-      return true;
+      $query = "SELECT COUNT(*) total FROM parkcar p JOIN booking b ON b.id_parkcar = p.id WHERE id_stateBooking <> 3 AND p.id = " . $id;
+      $result = $this->db->query($query)->row()->total;
+
+      if ($result > 0){
+            return false;
+      }
+      else
+      {
+        return true;
+      }
     }
 
     public function getParkcarCriteria(){
@@ -72,6 +71,7 @@
       $nbPlaces = $this->session->nbPlaces;
       $endDate = $this->session->endDate;
       $startDate = $this->session->startDate;
+      $maxPrice = $this->session->maxPrice;
 
       // var_dump($this->session);
 
@@ -108,6 +108,9 @@
       }
       if (!empty($nbPlaces)){
         $query = $query . " and c.id_nbPlaces = ". $nbPlaces;
+      }
+      if (!empty($maxPrice)){
+        $query = $query . " and c.price <= ". $maxPrice;
       }
       return $this->db->query($query)->result_array($query);
  }

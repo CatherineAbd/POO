@@ -1,9 +1,9 @@
 <!-- variables passées par $data : $title -->
 
-<header class="row mainHeader">
+<header class="row mainHeader sticky-top">
   <div class="col-5 mainHeaderLogo">
     <?= img(array("src" => "assets/img/logo2.png", "class" => "mainHeaderLogoImg")); ?>
-    <span class="mainHeaderTitle">LOCAAUTO</span>
+    <span class="mainHeaderBrand">LOCAAUTO</span>
   </div>
   <div class="col-5 mainHeaderTitle">
     <p><?= $title ?></p>

@@ -1,5 +1,6 @@
 <div class="container-fluid createBookingCont">
-  <div class="createBookingInfo">
+  <div class="row d-flex">
+  <div class="createBookingInfo col-2">
     <p>Marque : <?= $oneRow["brand"] ?></p>
     <p>Modèle : <?= $oneRow["model"] ?></p>
     <p>Nombre de portes : <?= $oneRow["nbDoors"] ?></p>
@@ -9,6 +10,12 @@
     <p>Catégorie : <?= $oneRow["category"] ?></p>
     <p>Agence : <?= $oneRow["name"] ?></p>
     <p>Prix par jour : <?= $oneRow["price"] ?></p>
+  </div>
+  <div class="createBookingImg col-2">
+    <div class="createBookingImgBorder">
+    <?= img(array("src" => "assets/img/cars/" . $oneRow["pathImg"], "class" => "createBookingImg")); ?>
+    </div>
+  </div>
   </div>
   <div class="createBookingCriteria">
     <?php
@@ -39,13 +46,13 @@
     }
     echo form_open($pathSubmit);
     ?>
-    <input type="text" name="startDate" value="<?= $this->session->startDate ?>" />
-    <input type="text" name="startEnd" value="<?= $this->session->endDate ?>" />
-    <input type="text" name="price" value="<?= $costRent ?>" />
-    <input type="text" name="nbKm" value="0" />
-    <input type="text" name="id_customer" value="<?= $this->session->custId ?>" />
-    <input type="text" name="agRecovering" value="<?= $oneRow["id_agency"] ?>" />
-    <input type="text" name="id_parkcar" value="<?= $oneRow["id"] ?>" />
+    <input type="hidden" name="startDate" value="<?= $this->session->startDate ?>" />
+    <input type="hidden" name="startEnd" value="<?= $this->session->endDate ?>" />
+    <input type="hidden" name="price" value="<?= $costRent ?>" />
+    <input type="hidden" name="nbKm" value="0" />
+    <input type="hidden" name="id_customer" value="<?= $this->session->custId ?>" />
+    <input type="hidden" name="agRecovering" value="<?= $oneRow["id_agency"] ?>" />
+    <input type="hidden" name="id_parkcar" value="<?= $oneRow["id"] ?>" />
     <div class="createBookingBtnDiv">
       
       <input type="submit" name="submit" value="Créer la réservation" class="btnSubmit" onclick="return confirm('<?= $msgConfirm ?>')"/>

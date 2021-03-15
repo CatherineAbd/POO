@@ -1,3 +1,6 @@
+// ---------------------------
+// Show administration tables
+// ---------------------------
 // document.getElementById("selectuser").addEventListener("click", function (){
 //   alert("coucou");
 // });
@@ -54,21 +57,25 @@ function employAdmSelectTable(){
     // show div of table selected
     switch (index) {
       case 1: document.getElementById("tableParkcar").style.display = "block";
-        break;
+      break;
       case 2: document.getElementById("tableBooking").style.display = "block";
-        break;
+      break;
     }
     // hide last div showed
     switch (indexCurrent) {
       case 1: document.getElementById("tableParkcar").style.display = "none";
-        break;
+      break;
       case 2: document.getElementById("tableBooking").style.display = "none";
-        break;
+      break;
     }
     indexCurrent = index;
   }
 }
 
+
+// ---------------------------
+// Menu on the side with customer's cnx
+// ---------------------------
 var openedMenu = false;
 
 function openCloseMenu(){
@@ -82,5 +89,6 @@ function openCloseMenu(){
     document.getElementById("navSideBtn").style.marginLeft = "0px";
     
   }
+
 }
 
